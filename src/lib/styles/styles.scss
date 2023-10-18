@@ -26,6 +26,10 @@ html {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 @keyframes blurry-appear {
   to {
     opacity: 1;

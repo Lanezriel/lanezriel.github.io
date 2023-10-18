@@ -29,7 +29,7 @@
 
   section {
     padding: 5rem;
-    gap: 3rem;
+    gap: 1rem;
 
     @include small {
       flex-direction: column;
@@ -89,9 +89,5 @@
     justify-content: center;
     align-self: stretch;
     background: rgba(0, 0, 0, 0.75);
-  }
-
-  .hidden {
-    display: none;
   }
 </style>
