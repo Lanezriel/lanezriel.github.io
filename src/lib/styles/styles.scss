@@ -1,0 +1,33 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+.home-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e1e1e1;
+
+  &.primary {
+    background: hsl(285, 100%, 10%);
+  }
+
+  &.primary-alt {
+    background: hsl(285, 100%, 7%);
+  }
+}
+
+@keyframes blurry-appear {
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
