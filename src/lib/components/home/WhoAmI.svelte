@@ -25,14 +25,26 @@
 </section>
 
 <style lang="scss">
+  @import  '$lib/styles/_mixins';
+
   section {
     padding: 5rem;
     gap: 3rem;
+
+    @include small {
+      flex-direction: column;
+      padding: 3rem 5rem 3rem 2rem;
+    }
   }
 
   .content,
   .scene {
     width: 50%;
+
+    @include small {
+      width: 100%;
+      height: 50%;
+    }
   }
 
   .content {
@@ -59,6 +71,15 @@
         color: black;
         background: rgba(255, 255, 255, 1);
       }
+
+      @include small {
+        font-size: 1.5rem;
+      }
+    }
+
+    @include small {
+      gap: 1rem;
+      font-size: 1.25rem;
     }
   }
 

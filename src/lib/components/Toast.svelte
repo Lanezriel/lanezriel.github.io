@@ -14,51 +14,61 @@
 </div>
 
 <style lang="scss">
+  @import '$lib/styles/_mixins';
+
   .toast {
     position: fixed;
     left: 50vw;
     bottom: 3rem;
+    max-width: 350px;
     background: hsl(0, 0%, 45%);
     border: solid 2px hsl(0, 0%, 40%);
     border-radius: 8px;
     overflow: hidden;
+    z-index: 100;
     transform: translate(-50%, 100%);
     opacity: 0;
     transition: transform 300ms ease-in-out,
                 opacity 300ms linear;
-
-    &.visible {
-      transform: translate(-50%, 0%);
-      opacity: 1;
+    
+    @include small {
+      bottom: 5vw;
+      width: 90vw;
+      max-width: unset;
     }
+  }
+
+  .visible {
+    transform: translate(-50%, 0%);
+    opacity: 1;
+  }
+
+  .head {
+    padding: 0.5rem;
+    background: hsl(0, 0%, 25%);
+    border-radius: 6px 6px 0 0;
+    border-bottom: solid 2px hsl(0, 0%, 40%);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .body {
+    padding: 0.5rem;
+    color: white;
+  }
+
+  .danger {
+    background: hsl(0, 75%, 70%);
+    border: solid 2px hsl(0, 65%, 45%);
 
     & > .head {
-      padding: 0.5rem;
-      background: hsl(0, 0%, 25%);
-      border-radius: 6px 6px 0 0;
-      border-bottom: solid 2px hsl(0, 0%, 40%);
-      color: white;
-      font-size: 1.25rem;
-      font-weight: bold;
+      background: hsl(0, 55%, 50%);
+      border-bottom: solid 2px hsl(0, 65%, 45%);
     }
 
     & > .body {
-      padding: 0.5rem;
-      color: white;
-    }
-
-    &.danger {
-      background: hsl(0, 75%, 70%);
-      border: solid 2px hsl(0, 65%, 45%);
-
-      & > .head {
-        background: hsl(0, 55%, 50%);
-        border-bottom: solid 2px hsl(0, 65%, 45%);
-      }
-
-      & > .body {
-        color: black;
-      }
+      color: black;
     }
   }
 </style>
