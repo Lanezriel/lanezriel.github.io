@@ -82,6 +82,10 @@
     flex-wrap: wrap;
     max-width: 500px;
 
+    @include medium {
+      max-width: 400px;
+    }
+
     @include small {
       max-width: unset;
     }
