@@ -57,7 +57,7 @@
 
     & > button {
       padding: 0.5rem 1.5rem;
-      color: white;
+      color: #e1e1e1;
       border: solid 2px white;
       border-radius: 8px;
       background: rgba(255, 255, 255, 0);
