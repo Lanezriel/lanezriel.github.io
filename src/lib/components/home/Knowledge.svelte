@@ -1,46 +1,19 @@
 <script>
   import tooltip from '$actions/tooltip.js';
-
-  import SvelteIcon from '$lib/svg/technologies/SvelteIcon.svelte';
-  import DjangoIcon from '$lib/svg/technologies/DjangoIcon.svelte';
-  import PythonIcon from '$lib/svg/technologies/PythonIcon.svelte';
-  import JavaScriptIcon from '$lib/svg/technologies/JavaScriptIcon.svelte';
-
-  const domains = [
-    {
-      name: 'Languages',
-      technologies: [
-        { name: 'JavaScript', icon: JavaScriptIcon },
-        { name: 'Python', icon: PythonIcon },
-      ]
-    },
-    {
-      name: 'Frameworks',
-      technologies: [
-        { name: 'Svelte', icon: SvelteIcon },
-        { name: 'Django', icon: DjangoIcon },
-      ],
-    },
-  ];
+  import knowledge from '$data/knowledge.js';
 </script>
 
 <section id="knowledge" class="home-section primary-alt">
-  <h2 class="hidden">Knowledge</h2>
-
   <div class="scene">3D SCENE PLACEHOLDER</div>
   <div class="content">
-    {#each domains as domain (domain.name)}
-      <div class="domain">
-        <h3>{domain.name}</h3>
-        <div class="technologies">
-          {#each domain.technologies as tech (tech.name)}
-            <div use:tooltip class="tech" aria-label={tech.name}>
-              <svelte:component this={tech.icon}/>
-            </div>
-          {/each}
+    <h2>Technologies I use the most</h2>
+    <div class="technologies">
+      {#each knowledge as tech (tech.name)}
+        <div use:tooltip={{ content: tech.name, animation: 'scale' }}>
+          <svelte:component this={tech.icon}/>
         </div>
-      </div>
-    {/each}
+      {/each}
+    </div>
   </div>
 </section>
 
@@ -81,19 +54,24 @@
     align-items: center;
     justify-content: center;
     gap: 2.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    padding-left: 1rem;
 
     & :global(svg) {
-      width: 2rem;
-      height: 2rem;
-    }
-  }
+      width: 4rem;
+      height: 4rem;
 
-  .domain {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+      @include small {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+
+    @include small {
+      font-size: 1rem;
+      padding-left: unset;
+    }
   }
 
   .technologies {
@@ -102,5 +80,10 @@
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
+    max-width: 500px;
+
+    @include small {
+      max-width: unset;
+    }
   }
 </style>
