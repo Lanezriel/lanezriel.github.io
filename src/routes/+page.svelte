@@ -13,7 +13,9 @@
   let rendered = false;
 
   onMount(async () => {
-    rendered = true;
+    setTimeout(() => {
+      rendered = true;
+    }, 250);
 
     // This is required because of the way Sveltekit handles import statements
     // GSAP plugins won't work properly unless registered this way
