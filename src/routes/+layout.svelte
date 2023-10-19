@@ -1,6 +1,8 @@
 <script>
+  import Toast from '$lib/components/Toast.svelte';
+
   import '$lib/styles/styles.scss';
-	import Toast from '$lib/components/Toast.svelte';
+  import 'tippy.js/dist/tippy.css';
 </script>
 
 <slot></slot>

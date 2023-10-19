@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
 
-  import HomeExperience from '@experiences/HomeExperience/HomeExperience.svelte';
+  import HomeExperience from '$experiences/HomeExperience/HomeExperience.svelte';
 	import ScrollIcon from '$lib/components/ScrollIcon.svelte';
 	import WhoAmI from '$lib/components/home/WhoAmI.svelte';
 	import Knowledge from '$lib/components/home/Knowledge.svelte';

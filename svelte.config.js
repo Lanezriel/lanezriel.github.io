@@ -10,7 +10,9 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter({ fallback: '404.html' }),
     alias: {
-      '@experiences': path.resolve('./src/experiences'),
+      $experiences: path.resolve('./src/experiences'),
+      $data: path.resolve('./src/data'),
+      $actions: path.resolve('./src/actions'),
     },
 	},
   preprocess: [vitePreprocess()],

@@ -1,4 +1,6 @@
 <script>
+  import tooltip from '$actions/tooltip.js';
+
   import SvelteIcon from '$lib/svg/technologies/SvelteIcon.svelte';
   import DjangoIcon from '$lib/svg/technologies/DjangoIcon.svelte';
   import PythonIcon from '$lib/svg/technologies/PythonIcon.svelte';
@@ -32,7 +34,9 @@
         <h3>{domain.name}</h3>
         <div class="technologies">
           {#each domain.technologies as tech (tech.name)}
-            <svelte:component this={tech.icon}/>
+            <div use:tooltip class="tech" aria-label={tech.name}>
+              <svelte:component this={tech.icon}/>
+            </div>
           {/each}
         </div>
       </div>
