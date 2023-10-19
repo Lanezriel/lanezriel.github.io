@@ -9,10 +9,4 @@
 <slot></slot>
 <Toast/>
 
-<style lang="scss">
-  @mixin small {
-    @media (max-width: 600px) {
-      @content;
-    }
-  }
-</style>
+<style lang="scss"></style>
