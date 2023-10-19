@@ -97,6 +97,10 @@
     background: rgb(16,0,33);
     background: radial-gradient(circle, rgba(16,0,33,1) 0%, rgba(0,0,0,1) 100%);
     z-index: -1;
+
+    @include small {
+      padding: 1rem 4rem 1rem 1rem;
+    }
   }
 
   h1,
@@ -105,10 +109,6 @@
     font-weight: bold;
     opacity: 1;
     filter: blur(0);
-
-    @include small {
-      max-width: 70%;
-    }
   }
   
   h1 {
