@@ -33,7 +33,7 @@
 
     @include small {
       flex-direction: column;
-      padding: 3rem 5rem 3rem 2rem;
+      padding: 1rem 4rem 1rem 1rem;
     }
   }
 
@@ -73,13 +73,14 @@
       }
 
       @include small {
-        font-size: 1.5rem;
+        padding: 0.25rem 1rem;
+        font-size: 1.25rem;
       }
     }
 
     @include small {
       gap: 1rem;
-      font-size: 1.25rem;
+      font-size: 1rem;
     }
   }
 

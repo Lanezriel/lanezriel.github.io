@@ -26,7 +26,7 @@
 
     @include small {
       flex-direction: column-reverse;
-      padding: 3rem 5rem 3rem 2rem;
+      padding: 1rem 4rem 1rem 1rem;
     }
   }
 
@@ -63,12 +63,13 @@
       height: 4rem;
 
       @include small {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 2rem;
+        height: 2rem;
       }
     }
 
     @include small {
+      gap: 1rem;
       font-size: 1rem;
       padding-left: unset;
     }
@@ -87,6 +88,7 @@
     }
 
     @include small {
+      gap: 0.5rem;
       max-width: unset;
     }
   }
