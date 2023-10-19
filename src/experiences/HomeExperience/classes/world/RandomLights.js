@@ -77,7 +77,7 @@ export default class RandomLights {
 
       setTimeout(() => {
         this.scene.remove(this.plane);
-      }, 2000);
+      }, 2500);
     }, 3000);
   }
 
