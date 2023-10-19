@@ -1,9 +1,5 @@
 <script>
-  import HomeIcon from '$lib/svg/HomeIcon.svelte';
-  import PersonIcon from '$lib/svg/PersonIcon.svelte';
-  import KnowledgeIcon from '$lib/svg/KnowledgeIcon.svelte';
-  import ExperienceIcon from '$lib/svg/ExperienceIcon.svelte';
-  import ContactIcon from '$lib/svg/ContactIcon.svelte';
+  import icons from '$lib/svg/icons/common';
 
   let scrolled;
   let windowHeight;
@@ -29,35 +25,40 @@
     class:active={scrolled < windowHeight - halfWindowHeight}
     on:click={() => goTo('#top')}
   >
-    <HomeIcon/>
+    <!-- <HomeIcon/> -->
+    <svelte:component this={icons.Home}/>
   </button>
   <button
     class="sections-list-item"
     class:active={scrolled >= windowHeight - halfWindowHeight && scrolled < (windowHeight * 2) - halfWindowHeight}
     on:click={() => goTo('#who-am-i')}
   >
-    <PersonIcon/>
+    <!-- <PersonIcon/> -->
+    <svelte:component this={icons.Person}/>
   </button>
   <button
     class="sections-list-item"
     class:active={scrolled >= (windowHeight * 2) - halfWindowHeight && scrolled < (windowHeight * 3) - halfWindowHeight}
     on:click={() => goTo('#knowledge')}
   >
-    <KnowledgeIcon/>
+    <!-- <KnowledgeIcon/> -->
+    <svelte:component this={icons.Knowledge}/>
   </button>
   <button
     class="sections-list-item"
     class:active={scrolled >= (windowHeight * 3) - halfWindowHeight && scrolled < (windowHeight * 4) - halfWindowHeight}
     on:click={() => goTo('#experience')}
   >
-    <ExperienceIcon/>
+    <!-- <ExperienceIcon/> -->
+    <svelte:component this={icons.Experience}/>
   </button>
   <button
     class="sections-list-item"
     class:active={scrolled >= (windowHeight * 4) - halfWindowHeight}
     on:click={() => goTo('#contact')}
   >
-    <ContactIcon/>
+    <!-- <ContactIcon/> -->
+    <svelte:component this={icons.Contact}/>
   </button>
 </div>
 
