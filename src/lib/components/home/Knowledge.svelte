@@ -1,10 +1,30 @@
 <script>
+	import { onDestroy, onMount } from 'svelte';
+
+  import KnowledgeExperience from '$experiences/KnowledgeExperience.js';
   import tooltip from '$actions/tooltip.js';
   import knowledge from '$data/knowledge.js';
+
+  let canvas;
+  let sceneDiv;
+  let experience;
+
+  onMount(() => {
+    experience = new KnowledgeExperience(canvas, sceneDiv);
+  })
+
+  onDestroy(() => {
+    if (experience) {
+      experience.destroy();
+      experience = null;
+    }
+  })
 </script>
 
 <section id="knowledge" class="home-section primary-alt">
-  <div class="scene">3D SCENE PLACEHOLDER</div>
+  <div bind:this={sceneDiv} class="scene">
+    <canvas bind:this={canvas}></canvas>
+  </div>
   <div class="content">
     <h2>Technologies I use the most</h2>
     <div class="technologies">
@@ -45,7 +65,6 @@
     align-items: center;
     justify-content: center;
     align-self: stretch;
-    background: rgb(255, 255, 255, 0.1);
   }
 
   .content {
