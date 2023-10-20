@@ -1,25 +1,12 @@
 <script>
 	import { onDestroy, onMount } from 'svelte';
-  import * as THREE from 'three';
 
+  import WhoAmIExperience from '$experiences/WhoAmIExperience';
   import toast from '$lib/utils/toast';
 
   let canvas;
   let sceneDiv;
-
-  let sizes;
-  let scene;
-  let camera;
-  let renderer;
-  let geometry;
-  let edges;
-  let line;
-  let material;
-  let mesh;
-  let ambientLight;
-  let directionalLight;
-  let clock;
-
+  let experience;
 
   function showToast() {
     toast(
@@ -30,127 +17,15 @@
     );
   }
 
-  function getSceneSizes() {
-    const elementSizes = sceneDiv.getBoundingClientRect();
-
-    return {
-      width: elementSizes.width,
-      height: elementSizes.height,
-      pixelRatio: Math.min(window.devicePixelRatio, 2),
-    };
-  }
-
-  function resize() {
-    // Update sizes
-    sizes = getSceneSizes();
-
-    // Update camera
-    camera.aspect = sizes.width / sizes.height;
-    camera.updateProjectionMatrix();
-
-    // Update renderer
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(sizes.pixelRatio);
-  }
-
-  function animate() {
-    const elapsedTime = clock.getElapsedTime();
-
-    mesh.rotation.x = Math.sin(elapsedTime * 0.25);
-    mesh.rotation.y = elapsedTime * 0.5;
-
-    line.rotation.x = Math.sin(elapsedTime * 0.25);
-    line.rotation.y = elapsedTime * 0.5;
-
-    renderer.render(scene, camera);
-
-    window.requestAnimationFrame(animate);
-  }
-
   onMount(() => {
-    sizes = getSceneSizes();
-
-    scene = new THREE.Scene();
-
-    window.addEventListener('resize', resize);
-
-    camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100);
-    camera.position.set(0, 0, 8);
-    scene.add(camera);
-
-    renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
-      alpha: true,
-      antialias: true,
-    });
-
-    renderer.useLegacyLights = true;
-    renderer.outputEncoding = THREE.sRGBEncoding;
-    renderer.toneMapping = THREE.CineonToneMapping;
-    renderer.toneMappingExposure = 1.75;
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.setClearColor(0x000000, 0);
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(sizes.pixelRatio);
-
-    geometry = new THREE.IcosahedronGeometry(1.5, 0);
-    material = new THREE.MeshStandardMaterial({
-      // transparent: true,
-      // opacity: 0.9,
-      roughness: 0.1,
-      metalness: 0.5,
-    });
-    mesh = new THREE.Mesh(geometry, material);
-    mesh.receiveShadow = true;
-    scene.add(mesh);
-
-    edges = new THREE.EdgesGeometry( geometry ); 
-    line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
-    scene.add(line);
-
-    ambientLight = new THREE.AmbientLight('#1b0024', 0.3);
-    scene.add(ambientLight);
-
-    directionalLight = new THREE.DirectionalLight('#f3ceff', 0.2);
-    directionalLight.castShadow = true;
-    directionalLight.shadow.mapSize.set(256, 256);
-    directionalLight.shadow.camera.far = 15;
-    directionalLight.shadow.normalBias = 0.05;
-    directionalLight.position.set(1, 2, 5);
-    scene.add(directionalLight);
-
-    // const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 1, '#ff0000');
-    // scene.add(directionalLightHelper);
-
-    clock = new THREE.Clock();
-
-    animate();
+    experience = new WhoAmIExperience(canvas, sceneDiv);
   })
 
   onDestroy(() => {
-    scene.traverse((child) => {
-      if (child instanceof THREE.Mesh) {
-        child.geometry.dispose();
-
-        // Loop through the material properties
-        Object.keys(child.material).forEach((key) => {
-          const value = child.material[key];
-
-          // Test if there is a dispose function
-          if (value && typeof value.dispose === 'function') {
-            value.dispose();
-          }
-        });
-      }
-    })
-
-    renderer.dispose();
-    renderer = null;
-
-    camera = null;
-    window.removeEventListener('resize', resize);
-    scene = null;
+    if (experience) {
+      experience.destroy();
+      experience = null;
+    }
   })
 </script>
 
