@@ -12,6 +12,8 @@
   let camera;
   let renderer;
   let geometry;
+  let edges;
+  let line;
   let material;
   let mesh;
   let ambientLight;
@@ -57,6 +59,9 @@
     mesh.rotation.x = Math.sin(elapsedTime * 0.25);
     mesh.rotation.y = elapsedTime * 0.5;
 
+    line.rotation.x = Math.sin(elapsedTime * 0.25);
+    line.rotation.y = elapsedTime * 0.5;
+
     renderer.render(scene, camera);
 
     window.requestAnimationFrame(animate);
@@ -90,20 +95,29 @@
     renderer.setPixelRatio(sizes.pixelRatio);
 
     geometry = new THREE.IcosahedronGeometry(1.5, 0);
-    material = new THREE.MeshStandardMaterial();
+    material = new THREE.MeshStandardMaterial({
+      // transparent: true,
+      // opacity: 0.9,
+      roughness: 0.1,
+      metalness: 0.5,
+    });
     mesh = new THREE.Mesh(geometry, material);
     mesh.receiveShadow = true;
     scene.add(mesh);
 
-    ambientLight = new THREE.AmbientLight('#1b0024', 0.2);
+    edges = new THREE.EdgesGeometry( geometry ); 
+    line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
+    scene.add(line);
+
+    ambientLight = new THREE.AmbientLight('#1b0024', 0.3);
     scene.add(ambientLight);
 
-    directionalLight = new THREE.DirectionalLight('#f3ceff', 0.3);
+    directionalLight = new THREE.DirectionalLight('#f3ceff', 0.2);
     directionalLight.castShadow = true;
     directionalLight.shadow.mapSize.set(256, 256);
     directionalLight.shadow.camera.far = 15;
     directionalLight.shadow.normalBias = 0.05;
-    directionalLight.position.set(1, 1.5, 5);
+    directionalLight.position.set(1, 2, 5);
     scene.add(directionalLight);
 
     // const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 1, '#ff0000');
