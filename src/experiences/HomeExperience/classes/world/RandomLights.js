@@ -23,9 +23,9 @@ export default class RandomLights {
 
   getRandomColor() {
     const hue = Math.floor(Math.random() * 360);
-    const light = 30 + Math.floor(Math.random() * 20);
+    const light = 40 + Math.floor(Math.random() * 20);
 
-    return `hsl(${hue}, 50%, ${light}%)`;
+    return `hsl(${hue}, 75%, ${light}%)`;
   }
 
   setPlaneGeometry() {
@@ -45,7 +45,7 @@ export default class RandomLights {
   }
 
   setLight() {
-    this.light = new THREE.PointLight(0x3000ff, 3, 4, 2);
+    this.light = new THREE.PointLight(0xc000ff, 0.65, 4);
     this.light.castShadow = true;
     // this.light.shadow.camera.near = 0.01;
   }
@@ -86,16 +86,16 @@ export default class RandomLights {
     const t = (elapsed * 0.001);
     
     if (elapsed < 1250) {
-      const scale = THREE.MathUtils.lerp(0, 1, t);
+      const scale = THREE.MathUtils.lerp(0, 0.75, t);
       this.plane.scale.set(scale, scale, scale);
 
-      const intensity = THREE.MathUtils.lerp(0, 0.25, t);
+      const intensity = THREE.MathUtils.lerp(0, 0.5, t);
       this.light.intensity = intensity;
     } else {
-      const scale = THREE.MathUtils.lerp(1.3, 0, t - 1.25);
+      const scale = THREE.MathUtils.lerp(1, 0, t - 1.25);
       this.plane.scale.set(scale, scale, scale);
 
-      const intensity = THREE.MathUtils.lerp(0.325, 0, t - 1.25);
+      const intensity = THREE.MathUtils.lerp(0.65, 0, t - 1.25);
       this.light.intensity = intensity;
     }
   }

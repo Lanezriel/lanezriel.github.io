@@ -42,7 +42,7 @@ export default class CursorLight {
   }
 
   setLight() {
-    this.light = new THREE.PointLight(0x3000ff, 1.5, 3, 2.5);
+    this.light = new THREE.PointLight(0x3000ff, 3, 3);
     this.light.castShadow = true;
     // this.light.shadow.camera.near = 0.01;
 
@@ -50,7 +50,6 @@ export default class CursorLight {
       this.debugFolder.addColor(this.light, 'color');
       this.debugFolder.add(this.light, 'intensity').min(0).max(1000).step(0.01);
       this.debugFolder.add(this.light, 'distance').min(0).max(1000).step(0.01);
-      this.debugFolder.add(this.light, 'decay').min(0).max(100).step(0.1);
     }
   }
 
@@ -69,7 +68,7 @@ export default class CursorLight {
       const scale = THREE.MathUtils.lerp(0, 0.5, t);
       this.plane.scale.set(scale, scale, scale);
 
-      const intensity = THREE.MathUtils.lerp(0, 1.5, t);
+      const intensity = THREE.MathUtils.lerp(0, 3, t);
       this.light.intensity = intensity;
     }
     this.plane.position.copy(this.cursor.position);

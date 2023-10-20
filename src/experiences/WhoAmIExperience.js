@@ -20,8 +20,7 @@ export default class WhoAmIExperience {
       antialias: true,
     });
 
-    this.renderer.useLegacyLights = true;
-    this.renderer.outputEncoding = THREE.sRGBEncoding;
+    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.CineonToneMapping;
     this.renderer.toneMappingExposure = 1.75;
     this.renderer.shadowMap.enabled = true;
@@ -45,10 +44,10 @@ export default class WhoAmIExperience {
     this.line = new THREE.LineSegments(this.edges, new THREE.LineBasicMaterial({ color: 0xffffff }));
     this.scene.add(this.line);
 
-    this.ambientLight = new THREE.AmbientLight('#1b0024', 0.3);
+    this.ambientLight = new THREE.AmbientLight('#1b0024', 1.5);
     this.scene.add(this.ambientLight);
 
-    this.directionalLight = new THREE.DirectionalLight('#f3ceff', 0.2);
+    this.directionalLight = new THREE.DirectionalLight('#f3ceff', 0.75);
     this.directionalLight.castShadow = true;
     this.directionalLight.shadow.mapSize.set(256, 256);
     this.directionalLight.shadow.camera.far = 15;
