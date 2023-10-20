@@ -1,6 +1,5 @@
 <script>
 	import { onDestroy, onMount } from 'svelte';
-  import { browser } from '$app/environment';
 
   import HomeExperience from './classes/Experience';
 
@@ -8,9 +7,7 @@
   let experience;
 
   onMount(() => {
-    if (browser) {
-      experience = new HomeExperience(canvas);
-    }
+    experience = new HomeExperience(canvas);
   });
 
   onDestroy(() => {
