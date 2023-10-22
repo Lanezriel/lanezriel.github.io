@@ -1,16 +1,18 @@
 <script>
   import { fade } from 'svelte/transition';
   import { form, field } from 'svelte-forms';
-  import { required, email } from 'svelte-forms/validators';
+  import { required, email, max } from 'svelte-forms/validators';
   import emailjs from '@emailjs/browser';
 
   // let canvas;
   let sceneDiv;
 
+  const maxBodyLength = 1500;
+
   const name = field('name', '', [required()]);
   const mail = field('email', '', [required(), email()]);
   const subject = field('subject', '', [required()]);
-  const message = field('message', '');
+  const message = field('message', '', [max(maxBodyLength)]);
   const contactForm = form(name, mail, subject, message);
 
   $: isFormValid = $name.dirty && $mail.dirty && $subject.dirty && $contactForm.valid;
@@ -89,12 +91,22 @@
       </div>
       <div class="input-group">
         <label for="message-input">Message</label>
-        <input
+        <textarea
           id="message-input"
           type="text"
           name="message"
+          rows="3"
+          class:error={$message.invalid}
           bind:value={$message.value}
         />
+        <div class="error">
+          {#if $contactForm.hasError('message.max')}
+            <p in:fade={{ duration: 300 }} out:fade={{ duration: 300 }}>Max length exceeded</p>
+          {/if}
+        </div>
+        <div class="hint">
+          {$message.value.length} / {maxBodyLength}
+        </div>
       </div>
       <button type="submit" disabled={!isFormValid}>Send</button>
     </form>
@@ -145,7 +157,7 @@
 
     @include small {
       gap: 0;
-      font-size: 1rem;
+      font-size: 0.9rem;
       padding-left: unset;
     }
   }
@@ -159,7 +171,7 @@
     gap: 1.5rem;
 
     @include small {
-      gap: 0.75rem;
+      gap: 1rem;
     }
   }
 
@@ -191,6 +203,17 @@
       }
     }
 
+    & > div.hint {
+      position: absolute;
+      right: 0;
+      top: 100%;
+      font-size: 0.8rem;
+
+      @include small {
+        font-size: 0.7rem;
+      }
+    }
+
     @include small {
       gap: 0.1rem;
     }
@@ -216,7 +239,12 @@
     }
   }
 
-  input {
+  textarea {
+    resize: none;
+  }
+
+  input,
+  textarea {
     width: 100%;
     padding: 0.5rem;
     font-size: 1.2rem;
@@ -270,8 +298,8 @@
     }
 
     @include small {
-      padding: 0.25rem 1rem;
-      font-size: 1.25rem;
+      padding: 0.2rem 0.75rem;
+      font-size: 1rem;
     }
   }
 </style>
