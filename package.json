@@ -25,9 +25,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@emailjs/browser": "^3.11.0",
 		"gsap": "^3.11.5",
 		"lil-gui": "^0.18.1",
 		"stats.js": "^0.17.0",
+		"svelte-forms": "^2.3.1",
 		"three": "^0.151.3",
 		"tippy.js": "^6.3.7"
 	}
