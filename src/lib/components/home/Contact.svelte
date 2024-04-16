@@ -4,6 +4,8 @@
   import { required, email, max } from 'svelte-forms/validators';
   import emailjs from '@emailjs/browser';
 
+  import toast from '$lib/utils/toast';
+
   // let canvas;
   let sceneDiv;
 
@@ -20,7 +22,13 @@
   function handleSubmit(e) {
     if (isFormValid) {
       emailjs.sendForm('service_7p5b5h9', 'template_ogfcoin', e.target, 'kPM_cNTx22Tvvxrib')
-        .then(() => console.log('message sent!'))
+        .then(() => {
+          toast(
+            'Message sent successfully!',
+            'Thank you for your message.\nI will read it as soon as possible and come back at you if needed.',
+            'success',
+          );
+        })
         .catch((err) => console.error(err));
     } else {
       console.log('INVALID');

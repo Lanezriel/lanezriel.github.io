@@ -56,6 +56,7 @@
   .body {
     padding: 0.5rem;
     color: white;
+    white-space: pre-line;
   }
 
   .danger {
@@ -65,6 +66,21 @@
     & > .head {
       background: hsl(0, 55%, 50%);
       border-bottom: solid 2px hsl(0, 65%, 45%);
+    }
+
+    & > .body {
+      color: black;
+    }
+  }
+
+  .success {
+    background: hsl(120, 75%, 70%);
+    border: solid 2px hsl(120, 65%, 45%);
+
+    & > .head {
+      background: hsl(120, 55%, 50%);
+      border-bottom: solid 2px hsl(120, 65%, 54%);
+      color: black;
     }
 
     & > .body {
