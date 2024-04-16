@@ -28,6 +28,11 @@
             'Thank you for your message.\nI will read it as soon as possible and come back at you if needed.',
             'success',
           );
+
+          $name.value = '';
+          $mail.value = '';
+          $subject.value = '';
+          $message.value = '';
         })
         .catch((err) => console.error(err));
     } else {
