@@ -19,7 +19,7 @@
 
   function handleSubmit(e) {
     if (isFormValid) {
-      emailjs.sendForm('service_7p5b5h9', 'template_ogfcoin', e.target)
+      emailjs.sendForm('service_7p5b5h9', 'template_ogfcoin', e.target, 'kPM_cNTx22Tvvxrib')
         .then(() => console.log('message sent!'))
         .catch((err) => console.error(err));
     } else {
