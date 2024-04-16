@@ -29,12 +29,19 @@
             'success',
           );
 
-          $name.value = '';
-          $mail.value = '';
-          $subject.value = '';
-          $message.value = '';
+          name.reset();
+          mail.reset();
+          subject.reset();
+          message.reset();
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+          toast(
+            'Oops! Something went wrong...',
+            'We could not succeed in sending the message.\nThe message service is, apparently, not available.',
+            'danger',
+          );
+          console.error(err);
+        });
     } else {
       console.log('INVALID');
     }
